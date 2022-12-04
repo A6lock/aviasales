@@ -1,4 +1,4 @@
-import './App.css';
+import './app.scss';
 
 function App() {
   return <h1>Start Aviasales</h1>;
