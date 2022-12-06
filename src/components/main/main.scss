@@ -1,0 +1,19 @@
+.main {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.ant-btn-primary {
+  width: 502px;
+  height: 50px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}

@@ -1,0 +1,28 @@
+.sorting-panel {
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.ant-radio-group {
+  min-width: 502px;
+  display: flex;
+}
+
+.ant-radio-group-large .ant-radio-button-wrapper {
+  height: 50px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-radio-button {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
