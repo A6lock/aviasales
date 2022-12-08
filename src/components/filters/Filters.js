@@ -7,11 +7,17 @@ import { onChangeCheckBox, onCheckAllCheckbox } from '../../actions/actions';
 
 import './filters.scss';
 
-// Создание чекбокс группы и массива чекбоксов
-const CheckboxGroup = Checkbox.Group;
-const options = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
-
 function Filters() {
+  const CheckboxGroup = Checkbox.Group;
+
+  // Лейблы чекбоксов
+  const options = [
+    'Без пересадок',
+    '1 пересадка',
+    '2 пересадки',
+    '3 пересадки',
+  ];
+
   const { checkedList, checkAll } = useSelector((state) => state);
 
   const dispatch = useDispatch();

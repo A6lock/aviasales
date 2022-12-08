@@ -6,7 +6,7 @@ import { onChangeSortingPanelValue } from '../../actions/actions';
 import './sortingPanel.scss';
 
 function SortingPanel() {
-  const searchPanelValue = useSelector((state) => state.sortingPanelValue);
+  const sortingPanelValue = useSelector((state) => state.sortingPanelValue);
   const dispatch = useDispatch();
   return (
     <div className="sorting-panel">
@@ -14,7 +14,7 @@ function SortingPanel() {
         optionType="button"
         size="large"
         buttonStyle="solid"
-        defaultValue={searchPanelValue}
+        defaultValue={sortingPanelValue}
       >
         <Radio.Button
           value="CHEAPEST"
