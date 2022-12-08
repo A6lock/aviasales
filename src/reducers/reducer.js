@@ -1,9 +1,10 @@
 /* eslint-disable default-param-last */
-// Тут должна быть прописана логика, как и что будет меняться в зависимости от
-// такого-то экшена
+
+// Стейт
 const initialState = {
   checkedList: ['Без пересадок', '1 пересадка', '2 пересадки'],
   checkAll: false,
+  sortingPanelValue: 'CHEAPEST',
 };
 
 export default function reducer(state = initialState, action) {
@@ -14,7 +15,7 @@ export default function reducer(state = initialState, action) {
         checkAll: false,
         checkedList: action.payload,
       };
-    case 'CHECK_ALL':
+    case 'SELECT_ALL':
       return {
         ...state,
         checkedList: action.payload,
@@ -25,6 +26,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         checkedList: [],
         checkAll: false,
+      };
+    case 'CHANGE_SEARCH_PANEL_VALUE':
+      return {
+        ...state,
+        sortingPanelValue: action.payload,
       };
     default:
       return state;

@@ -15,13 +15,6 @@ function Filters() {
   const { checkedList, checkAll } = useSelector((state) => state);
 
   const dispatch = useDispatch();
-  // Функция принимает в себя объект событие и если чекбокс зачекан, то зачекивает все, если нет,
-  // то снимает все чеки
-  // const onCheckAllChange = (e) => {
-  //  setCheckedList(e.target.checked ? options : []);
-
-  //  setCheckAll(e.target.checked);
-  // };
 
   return (
     <div className="filters__container">

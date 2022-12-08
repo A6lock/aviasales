@@ -1,14 +1,39 @@
 import { Radio } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { onChangeSortingPanelValue } from '../../actions/actions';
 
 import './sortingPanel.scss';
 
 function SortingPanel() {
+  const searchPanelValue = useSelector((state) => state.sortingPanelValue);
+  const dispatch = useDispatch();
   return (
     <div className="sorting-panel">
-      <Radio.Group optionType="button" size="large" buttonStyle="solid">
-        <Radio.Button value="1">САМЫЙ ДЕШЕВЫЙ</Radio.Button>
-        <Radio.Button value="2">САМЫЙ БЫСТРЫЙ</Radio.Button>
-        <Radio.Button value="3">ОПТИМАЛЬНЫЙ</Radio.Button>
+      <Radio.Group
+        optionType="button"
+        size="large"
+        buttonStyle="solid"
+        defaultValue={searchPanelValue}
+      >
+        <Radio.Button
+          value="CHEAPEST"
+          onClick={(e) => dispatch(onChangeSortingPanelValue(e.target.value))}
+        >
+          САМЫЙ ДЕШЕВЫЙ
+        </Radio.Button>
+        <Radio.Button
+          value="FASTEST"
+          onClick={(e) => dispatch(onChangeSortingPanelValue(e.target.value))}
+        >
+          САМЫЙ БЫСТРЫЙ
+        </Radio.Button>
+        <Radio.Button
+          value="OPTIMAL"
+          onClick={(e) => dispatch(onChangeSortingPanelValue(e.target.value))}
+        >
+          ОПТИМАЛЬНЫЙ
+        </Radio.Button>
       </Radio.Group>
     </div>
   );
