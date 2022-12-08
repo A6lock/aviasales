@@ -1,53 +1,42 @@
-import { useState } from 'react';
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import { Checkbox } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { onChangeCheckBox, onCheckAllCheckbox } from '../../actions/actions';
 
 import './filters.scss';
 
+// Создание чекбокс группы и массива чекбоксов
 const CheckboxGroup = Checkbox.Group;
-const plainOptions = [
-  'Без пересадок',
-  '1 пересадка',
-  '2 пересадки',
-  '3 пересадки',
-];
-const defaultCheckedList = ['Без пересадок', '1 пересадка', '2 пересадки'];
+const options = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
 
 function Filters() {
-  const [checkedList, setCheckedList] = useState(defaultCheckedList);
-  const [indeterminate, setIndeterminate] = useState(true);
-  const [checkAll, setCheckAll] = useState(false);
+  const { checkedList, checkAll } = useSelector((state) => state);
 
-  const onChange = (list) => {
-    setCheckedList(list);
+  const dispatch = useDispatch();
+  // Функция принимает в себя объект событие и если чекбокс зачекан, то зачекивает все, если нет,
+  // то снимает все чеки
+  // const onCheckAllChange = (e) => {
+  //  setCheckedList(e.target.checked ? options : []);
 
-    setIndeterminate(!!list.length && list.length < plainOptions.length);
-
-    setCheckAll(list.length === plainOptions.length);
-  };
-
-  const onCheckAllChange = (e) => {
-    setCheckedList(e.target.checked ? plainOptions : []);
-
-    setIndeterminate(false);
-
-    setCheckAll(e.target.checked);
-  };
+  //  setCheckAll(e.target.checked);
+  // };
 
   return (
     <div className="filters__container">
       <h2 className="filters__title">КОЛИЧЕСТВО ПЕРЕСАДОК</h2>
       <Checkbox
-        indeterminate={indeterminate}
-        onChange={onCheckAllChange}
+        onChange={(e) => dispatch(onCheckAllCheckbox(e, options))}
         checked={checkAll}
       >
         Все
       </Checkbox>
       <CheckboxGroup
         className="checkbox-group"
-        options={plainOptions}
+        options={options}
         value={checkedList}
-        onChange={onChange}
+        onChange={(list) => dispatch(onChangeCheckBox(list, options))}
         defaultValue
       />
     </div>
