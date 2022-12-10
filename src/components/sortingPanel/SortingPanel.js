@@ -8,6 +8,7 @@ import './sortingPanel.scss';
 function SortingPanel() {
   const sortingPanelValue = useSelector((state) => state.sortingPanelValue);
   const dispatch = useDispatch();
+
   return (
     <div className="sorting-panel">
       <Radio.Group
