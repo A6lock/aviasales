@@ -35,39 +35,27 @@ export const onChangeSortingPanelValue = (value) => {
 
 export const requestError = () => ({ type: 'REQUEST_ERROR' });
 
-export const getTickets = (searchId) => (dispatch) => {
+export const getTicketsChunck = (searchId) => (dispatch) => {
   aviasalesService
     .getTickets(searchId)
     .then((data) => {
-      const ticketsArr = [...data.tickets];
-      // eslint-disable-next-line no-unused-expressions
-      !data.stop
-        ? aviasalesService.getTickets(localStorage.getItem('searchId'))
-        : dispatch({ type: 'TICKETS_FETCHED', payload: ticketsArr });
-    })
-    .catch(() => dispatch(requestError()));
-};
+      dispatch({
+        type: 'TICKETS_FETCHED',
+        payload: [...data.tickets],
+      });
 
-// eslint-disable-next-line no-unused-vars
-export const getSearchId = () => (dispatch) => {
-  aviasalesService
-    .getSearchId()
-    .then((searchId) => dispatch(getTickets(searchId)));
+      if (!data.stop) {
+        dispatch(getTicketsChunck(searchId));
+      }
+    })
+    .catch(() => dispatch(getTicketsChunck(searchId)));
 };
 
 export const getTick = () => (dispatch) => {
   aviasalesService
     .getSearchId()
     .then(({ searchId }) => {
-      aviasalesService
-        .getTickets(searchId)
-        .then((data) => {
-          dispatch({
-            type: 'TICKETS_FETCHED',
-            payload: [...data.tickets],
-          });
-        })
-        .catch(() => dispatch({ type: 'ERROR' }));
+      dispatch(getTicketsChunck(searchId));
     })
     .catch(() => dispatch({ type: 'ERROR' }));
 };

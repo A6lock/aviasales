@@ -45,7 +45,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         spin: false,
-        tickets: action.payload,
+        tickets: [...state.tickets, ...action.payload],
       };
     case 'REQUEST_ERROR':
       return {

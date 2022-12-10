@@ -48,10 +48,10 @@ function Ticket({ ticketData }) {
                 {row.origin} – {row.destination}
               </span>
               <span className="info__data">
-                {format(new Date(row.date), 'H:m')} –
+                {format(new Date(row.date), 'HH:mm')} –
                 {format(
                   new Date(row.date).getTime() + row.duration * 60000,
-                  'H:mm'
+                  'HH:mm'
                 )}
               </span>
             </div>

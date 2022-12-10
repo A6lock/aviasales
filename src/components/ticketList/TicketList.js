@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,12 +21,29 @@ function TicketList() {
 
   // Нужно будет передавать пропсы, поэтому ебашим их в юзКолбек
 
+  const getSortedTickets = ([...ticketsArr]) => {
+    switch (sortingPanelValue) {
+      case 'FASTEST':
+        return ticketsArr.sort(
+          (a, b) =>
+            a.segments.reduce((acc, i) => acc + i.duration, 0) -
+            b.segments.reduce((acc, i) => acc + i.duration, 0)
+        );
+      default:
+        return ticketsArr.sort((a, b) => a.price - b.price);
+    }
+  };
+
   useEffect(() => {
     dispatch(getTick());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkedList, sortingPanelValue]);
+  }, []);
 
-  const ticketsIist = tickets.map((ticket, index) =>
+  useEffect(() => {}, [sortingPanelValue]);
+
+  const sortedTickets = getSortedTickets(tickets);
+
+  const ticketsIist = sortedTickets.map((ticket, index) =>
     index < visibleItems ? <Ticket key={uuidv4()} ticketData={ticket} /> : null
   );
 
