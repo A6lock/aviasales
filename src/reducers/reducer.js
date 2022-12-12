@@ -19,40 +19,53 @@ export default function reducer(state = initialState, action) {
         checkAll: false,
         checkedList: action.payload,
       };
+
     case 'SELECT_ALL':
       return {
         ...state,
         checkedList: action.payload,
         checkAll: true,
       };
+
     case 'REMOVE_SELECTION':
       return {
         ...state,
         checkedList: [],
         checkAll: false,
       };
+
     case 'CHANGE_SEARCH_PANEL_VALUE':
       return {
         ...state,
         sortingPanelValue: action.payload,
       };
+
     case 'TICKETS_FETCHING':
       return {
         ...state,
         spin: true,
       };
+
     case 'TICKETS_FETCHED':
       return {
         ...state,
         spin: false,
         tickets: [...state.tickets, ...action.payload],
       };
+
     case 'REQUEST_ERROR':
       return {
         ...state,
         spin: false,
         error: true,
       };
+
+    case 'ADDING_TICKETS':
+      return {
+        ...state,
+        visibleItems: state.visibleItems + 5,
+      };
+
     default:
       return state;
   }

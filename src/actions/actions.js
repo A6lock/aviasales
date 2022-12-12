@@ -59,3 +59,7 @@ export const getTick = () => (dispatch) => {
     })
     .catch(() => dispatch({ type: 'ERROR' }));
 };
+
+export const addTickets = () => {
+  return { type: 'ADDING_TICKETS' };
+};

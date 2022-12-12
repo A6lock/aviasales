@@ -10,7 +10,7 @@ import './filters.scss';
 function Filters() {
   const CheckboxGroup = Checkbox.Group;
 
-  // Лейблы чекбоксов
+  // Лейблы чекбоксов, которые потом генерятся в чекбоксы
   const options = [
     'Без пересадок',
     '1 пересадка',
