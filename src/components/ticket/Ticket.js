@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 
 import './ticket.scss';
 
@@ -75,5 +76,13 @@ function Ticket({ ticketData }) {
     </li>
   );
 }
+
+Ticket.defaultProps = {
+  ticketData: {},
+};
+
+Ticket.propTypes = {
+  ticketData: PropTypes.object,
+};
 
 export default Ticket;
