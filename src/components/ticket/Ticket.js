@@ -11,7 +11,7 @@ function Ticket({ ticketData }) {
   const getFlightTime = (seconds) => {
     const hours = String(Math.trunc(seconds / 60));
     const minutes = String(seconds % 60);
-    return `${hours}:${minutes.length < 2 ? `0${minutes}` : minutes}`;
+    return `${hours}ч ${minutes.length < 2 ? `0${minutes}` : minutes}м`;
   };
 
   const getStopsCount = (stopsCount) => {
