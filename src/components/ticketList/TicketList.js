@@ -22,6 +22,12 @@ function TicketList() {
 
   const dispatch = useDispatch();
 
+  // Получение билетов при маунте
+  useEffect(() => {
+    dispatch(getTick());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Нужно будет передавать пропсы, поэтому ебашим их в юзКолбек
 
   // Сортировка билетов. Создаю пустой массив, далее наполняю его по мере выбранных чекбоксов.
@@ -69,19 +75,8 @@ function TicketList() {
     }
   };
 
-  // Получение билетов при маунте
-  useEffect(() => {
-    dispatch(getTick());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // Получение сортированных билетов
   const sortedTickets = getSortedTickets(tickets);
-
-  // Отрисовка билетов
-  const ticketsIist = sortedTickets.map((ticket, index) =>
-    index < visibleItems ? <Ticket key={uuidv4()} ticketData={ticket} /> : null
-  );
 
   const button = !(sortedTickets.length === 0) ? (
     <Button type="primary" onClick={() => dispatch(addTickets())}>
@@ -97,6 +92,11 @@ function TicketList() {
         showIcon
       />
     ) : null;
+
+  // Отрисовка билетов
+  const ticketsIist = sortedTickets.map((ticket, index) =>
+    index < visibleItems ? <Ticket key={uuidv4()} ticketData={ticket} /> : null
+  );
 
   return (
     <>
