@@ -33,8 +33,10 @@ export const onChangeSortingPanelValue = (value) => {
   };
 };
 
+// Функция при ошибке запроса
 export const requestError = () => ({ type: 'REQUEST_ERROR' });
 
+// Функция получания части билетов до того момента, пока они все не будут получены
 export const getTicketsChunck = (searchId) => (dispatch) => {
   aviasalesService
     .getTickets(searchId)
@@ -54,6 +56,7 @@ export const getTicketsChunck = (searchId) => (dispatch) => {
     .catch(() => dispatch(getTicketsChunck(searchId)));
 };
 
+// Функция получения билетов
 export const getTick = () => (dispatch) => {
   aviasalesService
     .getSearchId()
@@ -63,6 +66,7 @@ export const getTick = () => (dispatch) => {
     .catch(() => dispatch({ type: 'ERROR' }));
 };
 
+// Функция добавления еще 5-ти билетов на страницу
 export const addTickets = () => {
   return { type: 'ADDING_TICKETS' };
 };

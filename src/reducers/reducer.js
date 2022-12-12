@@ -20,6 +20,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         checkAll: false,
         checkedList: action.payload,
+        visibleItems: 5,
       };
 
     case 'SELECT_ALL':
@@ -27,6 +28,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         checkedList: action.payload,
         checkAll: true,
+        visibleItems: 5,
       };
 
     case 'REMOVE_SELECTION':
@@ -40,6 +42,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         sortingPanelValue: action.payload,
+        visibleItems: 5,
       };
 
     case 'TICKETS_FETCHING':

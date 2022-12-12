@@ -3,9 +3,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Button, Alert } from 'antd';
 
+import { addTickets, getTick } from '../../actions/actions';
 import Ticket from '../ticket/Ticket';
-import { getTick } from '../../actions/actions';
 
 // Основная проблема в том, что я не знаю, как правильно получить ид и после этого сделать
 // Запрос билетов.
@@ -17,6 +18,7 @@ function TicketList() {
   const sortingPanelValue = useSelector((state) => state.sortingPanelValue);
   const tickets = useSelector((state) => state.tickets);
   const visibleItems = useSelector((state) => state.visibleItems);
+  const ticketsReceived = useSelector((state) => state.ticketsReceived);
 
   const dispatch = useDispatch();
 
@@ -67,6 +69,7 @@ function TicketList() {
     }
   };
 
+  // Получение билетов при маунте
   useEffect(() => {
     dispatch(getTick());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,11 +78,33 @@ function TicketList() {
   // Получение сортированных билетов
   const sortedTickets = getSortedTickets(tickets);
 
+  // Отрисовка билетов
   const ticketsIist = sortedTickets.map((ticket, index) =>
     index < visibleItems ? <Ticket key={uuidv4()} ticketData={ticket} /> : null
   );
 
-  return <ul>{ticketsIist}</ul>;
+  const button = !(sortedTickets.length === 0) ? (
+    <Button type="primary" onClick={() => dispatch(addTickets())}>
+      Показать еще 5 билетов!
+    </Button>
+  ) : null;
+
+  const noTickets =
+    sortedTickets.length === 0 && ticketsReceived ? (
+      <Alert
+        message="Рейсов, подходящих под заданные фильтры, не найдено"
+        type="info"
+        showIcon
+      />
+    ) : null;
+
+  return (
+    <>
+      {noTickets}
+      <ul>{ticketsIist}</ul>
+      {button}
+    </>
+  );
 }
 
 export default TicketList;
