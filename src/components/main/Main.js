@@ -5,6 +5,7 @@ import { addTickets } from '../../actions/actions';
 import Filters from '../filters/Filters';
 import SortingPanel from '../sortingPanel/SortingPanel';
 import TicketList from '../ticketList/TicketList';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 import './main.scss';
 
@@ -16,6 +17,7 @@ function Main() {
       <Filters />
       <div>
         <SortingPanel />
+        <ProgressBar />
         <TicketList />
         <Button type="primary" onClick={() => dispatch(addTickets())}>
           Показать еще 5 билетов!

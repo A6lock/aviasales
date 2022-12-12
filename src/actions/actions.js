@@ -41,7 +41,10 @@ export const getTicketsChunck = (searchId) => (dispatch) => {
     .then((data) => {
       dispatch({
         type: 'TICKETS_FETCHED',
-        payload: [...data.tickets],
+        payload: {
+          tickets: [...data.tickets],
+          ticketsReceived: data.stop,
+        },
       });
 
       if (!data.stop) {

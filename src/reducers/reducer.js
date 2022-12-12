@@ -8,6 +8,8 @@ const initialState = {
   spin: false,
   error: false,
   tickets: [],
+  ticketsReceived: false,
+  downloadProgress: 0,
   visibleItems: 5,
 };
 
@@ -50,7 +52,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         spin: false,
-        tickets: [...state.tickets, ...action.payload],
+        tickets: [...state.tickets, ...action.payload.tickets],
+        ticketsReceived: action.payload.ticketsReceived,
+        downloadProgress: action.payload.ticketsReceived
+          ? 100
+          : state.downloadProgress + 4,
       };
 
     case 'REQUEST_ERROR':
